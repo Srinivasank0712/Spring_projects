@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active:
+         test
+---
+spring:
+  config:
+    activate:
+      on-profile:
+               prod
+
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:2000/user_management_system_prod
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true' 
+    
+  management:
+    endpoints:
+      web:
+        exposure:
+         include:"*"             
+---
+spring:
+  config:
+    activate:
+      on-profile:
+               test
+
+  datasource:
+    username: postgres
+    url: jdbc:postgresql://localhost:2000/user_management_system_test
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'   
+management:
+    endpoints:
+      web:
+        exposure:
+           include: "*"
+      
+  
+      
+                                      
